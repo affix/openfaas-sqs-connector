@@ -49,7 +49,7 @@ func InitializePollerSQS() {
 			return err
 		}
 
-		controller.Invoke("", &decoded)
+		controller.Invoke(queueName, &decoded)
 		return nil
 	}))
 }
