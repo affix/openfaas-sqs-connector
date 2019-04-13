@@ -30,7 +30,7 @@ func InitializePollerSQS() {
 	creds := types.GetCredentials()
 	config := &types.ControllerConfig{
 		RebuildInterval:   time.Millisecond * 1000,
-		GatewayURL:        "http://gateway:8080",
+		GatewayURL:        os.Getenv("GATEWAY_URL"),
 		PrintResponse:     printResponse,
 		PrintResponseBody: printResponseBody,
 	}

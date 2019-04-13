@@ -27,7 +27,7 @@ spec:
         sh "docker build -t affixxx/openfaas-sqs-connector:latest ."
         if(env.BRANCH_NAME == "master") {
           withDockerRegistry([ credentialsId: "dockerhub", url: "" ]) {
-            sh "docker push affixxx/openfaas-sqs-connectorr:latest"
+            sh "docker push affixxx/openfaas-sqs-connector:latest"
           }
         }
       }

@@ -1,0 +1,43 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: openfaas-sqs-connector
+    component: openfaas-sqs-connector
+  name: openfaas-sqs-connector
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: openfaas-sqs-connector
+        component: openfaas-sqs-connector
+    spec:
+      containers:
+      - name: sqs-connector
+        image: affixxx/openfaas-sqs-connector:latest
+        env:
+          - name: GATEWAY_URL
+            value: "http://gateway.openfaas:8080"
+          - name: AWS_SQS_QUEUE_NAME
+            value: "faas-request,"
+          - name: AWS_ACCESS_KEY_ID
+            valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: AWS_ACCESS_KEY_ID
+          - name: AWS_SECRET_ACCESS_KEY_ID
+            valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: AWS_ACCESS_SECRET_KEY_ID
+          - name: AWS_REGION
+            valueFrom:
+                secretKeyRef:
+                  name: aws-credentials
+                  key: AWS_REGION
+          - name: PRINT_RESPONSE
+            value: true
+          - name: PRINT_RESPONSE_BODY
+            value: true

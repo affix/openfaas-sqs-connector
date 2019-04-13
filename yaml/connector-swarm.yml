@@ -1,0 +1,23 @@
+version: '3.2'
+services:
+  connector:
+    image: affix/openfaas-sqs-connector:latest
+    hostname: openfaas-sqs-connector
+    environment:
+      GATEWAY_URL: http://gateway:8080
+      AWS_SQS_QUEUE_NAME: "faas-request,"
+      PRINT_RESPONSE: "true"
+      PRINT_RESPONSE_BODY: "true"
+      AWS_ACCESS_KEY_ID: "1x"
+      AWS_SECRET_ACCESS_KEY_ID: "LJSHDFKHAEF34POWUEH"
+      AWS_REGION: "eu-west-1"
+    networks:
+    - streaming
+    - func_functions
+
+networks:
+  streaming:
+    driver: overlay
+    attachable: true
+  func_functions:
+    external: true
