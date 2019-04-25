@@ -11,6 +11,11 @@ services:
       AWS_ACCESS_KEY_ID: "1x"
       AWS_SECRET_ACCESS_KEY_ID: "LJSHDFKHAEF34POWUEH"
       AWS_REGION: "eu-west-1"
+      basic_auth: "true"
+      secret_mount_path: "/run/secrets/"
+    secrets:
+      - basic-auth-password
+      - basic-auth-user
     networks:
     - streaming
     - func_functions
