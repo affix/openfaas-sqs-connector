@@ -3,6 +3,7 @@ pipelineConfig:
   pipelines:
     pullRequest:
       pipeline:
+        agent: golang:latest
         stages:
           - name: build
             steps:
