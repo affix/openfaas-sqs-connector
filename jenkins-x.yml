@@ -8,7 +8,7 @@ pipelineConfig:
           - sh: gofmt -s main.go
     release:
       stages:
-        -name: setVersion
+        - name: setVersion
           steps:
           - sh: echo \$(jx-release-version) > VERSION
             comment: so we can retrieve the version in later steps
