@@ -4,7 +4,7 @@
 replicaCount: 1
 image:
   repository: 10.245.88.36:5000/affix/openfaas-sqs-connector
-  tag: 0.0.3
+  tag: 0.0.4
   pullPolicy: IfNotPresent
 
 # define environment variables here as a map of key: value
