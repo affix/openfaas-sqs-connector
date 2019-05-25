@@ -2,19 +2,17 @@ buildPack: go
 pipelineConfig:
   pipelines:
     pullRequest:
-      pipeline:
-        stages:
-        - name: build
+      stages:
+        build:
           steps:
           - sh: gofmt -s main.go
     release:
-      pipeline:
-        stages:
-        - name: setVersion
+      stages:
+        -name: setVersion
           steps:
           - sh: echo \$(jx-release-version) > VERSION
             comment: so we can retrieve the version in later steps
           - sh: jx step tag --version \$(cat VERSION)
-        - name: build:
+        - name: build
           steps:
-          - sh: docker build -t affixxx/openfaas-sqs-connector:$VERSION .
+          - sh: echo 'release $VERSION'
