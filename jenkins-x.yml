@@ -1,1 +1,20 @@
 buildPack: go
+pipelineConfig:
+  pipelines:
+    pullRequest:
+      pipeline:
+        agent:
+          image: golang:latest
+        stages:
+          - name: build
+            steps:
+            - sh: gofmt -s main.go
+    release:
+      setVersion:
+        steps:
+        - sh: echo \$(jx-release-version) > VERSION
+          comment: so we can retrieve the version in later steps
+        - sh: jx step tag --version \$(cat VERSION)
+      build:
+        steps:
+        - sh: echo 'release $VERSION'
