@@ -8,6 +8,7 @@ pipelineConfig:
         stages:
           - name: build
             steps:
+            - sh: dep ensure
             - sh: gofmt -s main.go
     release:
       setVersion:
@@ -17,4 +18,4 @@ pipelineConfig:
         - sh: jx step tag --version \$(cat VERSION)
       build:
         steps:
-        - sh: echo 'release $VERSION'
+        - sh: dep ensure
