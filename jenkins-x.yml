@@ -8,8 +8,7 @@ pipelineConfig:
         stages:
           - name: build
             steps:
-            - sh: dep ensure
-            - sh: gofmt -s main.go
+            - sh: docker build -t sqs-test:latest .
     release:
       setVersion:
         steps:
