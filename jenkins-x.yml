@@ -2,10 +2,11 @@ buildPack: go
 pipelineConfig:
   pipelines:
     pullRequest:
-      stages:
-        build:
-          steps:
-          - sh: gofmt -s main.go
+      pipeline:
+        stages:
+          build:
+            steps:
+            - sh: gofmt -s main.go
     release:
       setVersion:
         steps:
