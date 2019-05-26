@@ -2,13 +2,15 @@ buildPack: go
 pipelineConfig:
   pipelines:
     pullRequest:
-      pipeline:
-        agent:
-          image: golang:latest
-        stages:
-          - name: build
-            steps:
-            - sh: docker build -t sqs-test:latest .
+      steps:
+        preBuild:
+          steps:
+            - name: dependencies
+              sh: dep ensure
+        build:
+          steps:
+            - name: Build Docker
+              sh: docker build -t sqs-test:latest .
     release:
       setVersion:
         steps:
