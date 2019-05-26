@@ -2,15 +2,14 @@ buildPack: go
 pipelineConfig:
   pipelines:
     pullRequest:
-      steps:
-        preBuild:
-          steps:
-            - name: dependencies
-              sh: dep ensure
-        build:
-          steps:
-            - name: Build Docker
-              sh: docker build -t sqs-test:latest .
+      preBuild:
+        steps:
+          - name: dependencies
+            sh: dep ensure
+      build:
+        steps:
+          - name: Build Docker
+            sh: docker build -t sqs-test:latest .
     release:
       setVersion:
         steps:
