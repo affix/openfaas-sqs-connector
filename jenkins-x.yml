@@ -1,1 +1,6 @@
 buildPack: go
+pipelines:
+  pullRequest:
+    preBuild:
+      - name: Install dep
+        sh: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
