@@ -1,6 +1,6 @@
 ## openfaas-sqs-connector
 
-The SQS connector connects OpenFaaS functions to AQS SQS Queues.
+The SQS connector connects OpenFaaS functions to AWS SQS Queues.
 
 Goals:
 
